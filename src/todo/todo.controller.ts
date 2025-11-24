@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Req,
-  Post,
-  Header,
-  Redirect,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Req, Post, Header, Param } from '@nestjs/common';
 
 @Controller('todo')
 export class TodoController {
@@ -19,5 +11,12 @@ export class TodoController {
   @Get()
   findAll(@Req() request: Request): string {
     return 'This action returns all todos';
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): string {
+    if (id) return `This action returns a #${id} todo`;
+
+    return 'This action returns a todo without id';
   }
 }
